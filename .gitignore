@@ -1,5 +1,23 @@
-cpygfx.egg-info/
+# Python 
 __pycache__/
+*.pyc
+
+# C/C++ 編譯產物
 *.so
-.DS_Store
+*.o
+
+# Setuptools (pip)
+build/
+dist/
+*.egg-info/
+*.egg
+
+# 虛擬環境
 .venv/
+venv/
+
+# macOS
+.DS_Store
+
+# VSCode 工作區設定
+.vscode/

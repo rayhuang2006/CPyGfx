@@ -1,0 +1,5 @@
+cpygfx.egg-info/
+__pycache__/
+*.so
+.DS_Store
+.venv/

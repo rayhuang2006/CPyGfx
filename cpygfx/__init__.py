@@ -10,11 +10,13 @@ from .core import (
     draw_line,
     get_mouse_x,
     get_mouse_y,
-    
-    # --- 新增 ---
     draw_rect,
     draw_rect_filled,
-    get_mouse_clicked
+    get_mouse_clicked,
+    text_init,
+    load_font,
+    draw_text,
+    text_quit
 )
 
 __all__ = [
@@ -27,9 +29,11 @@ __all__ = [
     "draw_line",
     "get_mouse_x",
     "get_mouse_y",
-    
-    # --- 新增 ---
     "draw_rect",
     "draw_rect_filled",
-    "get_mouse_clicked"
+    "get_mouse_clicked",
+    "text_init",
+    "load_font",
+    "draw_text",
+    "text_quit"
 ]

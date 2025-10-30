@@ -1,8 +1,14 @@
 # 檔案名稱: CPyGfx/cpygfx/core.py
 # (已修正，加回 update 和 close_window)
 import ctypes
+import sys
 import os
 import importlib.util  
+
+def _to_c_string(py_str):
+    if py_str is None:
+        return None
+    return py_str.encode(sys.getdefaultencoding())
 
 spec = importlib.util.find_spec("cpygfx._cpygfx_core")
 
@@ -56,6 +62,17 @@ _lib.draw_rect_filled.restype = None
 _lib.get_mouse_clicked.argtypes = []
 _lib.get_mouse_clicked.restype = ctypes.c_int
 
+_lib.text_init.argtypes = []
+_lib.text_init.restype = ctypes.c_int
+
+_lib.load_font.argtypes = [ctypes.c_char_p, ctypes.c_int]
+_lib.load_font.restype = ctypes.c_int
+
+_lib.draw_text.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int]
+_lib.draw_text.restype = None
+
+_lib.text_quit.argtypes = []
+
 # --- 3. 將 C 函式包裝成 Python 函式 ---
 def init_window(w: int, h: int) -> bool:
     if _lib.init_window(w, h) != 0:
@@ -102,3 +119,26 @@ def draw_rect_filled(x: int, y: int, w: int, h: int, r: int, g: int, b: int):
 def get_mouse_clicked() -> bool:
     """檢查「這一幀」滑鼠左鍵是否「剛被按下」"""
     return _lib.get_mouse_clicked() == 1
+
+# ... (在 Python 函式定義區塊)
+def text_init() -> bool:
+    """初始化文字引擎。必須在 init_window 之後呼叫。"""
+    if _lib.text_init() != 0:
+        print("CPyGfx 核心：TTF 文字引擎初始化失敗。")
+        return False
+    return True
+
+def load_font(font_path: str, size: int) -> bool:
+    """載入字型檔。"""
+    if _lib.load_font(_to_c_string(font_path), size) != 0:
+        print(f"CPyGfx 核心：載入字型 {font_path} 失敗。")
+        return False
+    return True
+
+def draw_text(text: str, x: int, y: int, r: int, g: int, b: int):
+    """在 (x, y) 處繪製文字。"""
+    _lib.draw_text(_to_c_string(text), x, y, r, g, b)
+
+def text_quit():
+    """關閉文字引擎。"""
+    _lib.text_quit()

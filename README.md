@@ -1,4 +1,5 @@
 # CPyGfx (C-Python Graphics Engine)
+[繁體中文版本](https://github.com/rayhuang2006/CPyGfx/blob/main/README_tw.md)
 
 This is a mini C graphics engine built from scratch, wrapped using Python's `ctypes`.
 

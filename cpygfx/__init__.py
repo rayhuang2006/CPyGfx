@@ -16,7 +16,12 @@ from .core import (
     text_init,
     load_font,
     draw_text,
-    text_quit
+    text_quit,
+    image_init,
+    load_image,
+    draw_image,
+    free_image,
+    image_quit
 )
 
 __all__ = [
@@ -35,5 +40,10 @@ __all__ = [
     "text_init",
     "load_font",
     "draw_text",
-    "text_quit"
+    "text_quit",
+    "image_init",
+    "load_image",
+    "draw_image",
+    "free_image",
+    "image_quit"
 ]

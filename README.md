@@ -1,3 +1,4 @@
+![banner](https://raw.githubusercontent.com/rayhuang2006/CPyGfx/80a5a66a7c34fd157efad82b95664570108f801c/README_src/Cpygfx_banner.svg)
 # CPyGfx (C-Python Graphics Engine)
 [繁體中文版本](https://github.com/rayhuang2006/CPyGfx/blob/main/README_tw.md)
 

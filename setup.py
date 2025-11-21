@@ -1,10 +1,7 @@
-# 檔案名稱: CPyGfx/setup.py
-# (已升級為支援 SDL2_ttf 和 SDL2_image)
 import os
 import subprocess
 from setuptools import setup, Extension, find_packages
 
-# --- 自動偵測 SDL2 旗標 (flags) ---
 def get_c_flags(pkg_name):
     """執行 pkg-config 或 sdl2-config 來取得編譯旗標"""
     config_tool = "sdl2-config" if pkg_name == "SDL2" else "pkg-config"
@@ -35,17 +32,15 @@ def get_c_libs(pkg_name):
     except subprocess.CalledProcessError:
         raise EnvironmentError(f"使用 `{config_tool}` 取得 {pkg_name} libs 失敗。")
 
-# --- 取得所有函式庫的旗標 ---
-# 我們現在需要 SDL2, SDL2_ttf, 和 SDL2_image
 all_cflags = list(set(
     get_c_flags("SDL2") + 
     get_c_flags("SDL2_ttf") +
-    get_c_flags("SDL2_image")  # <-- 新增
+    get_c_flags("SDL2_image")
 ))
 all_libs = list(set(
     get_c_libs("SDL2") + 
     get_c_libs("SDL2_ttf") +
-    get_c_libs("SDL2_image")   # <-- 新增
+    get_c_libs("SDL2_image")
 ))
 
 print(f"--- 偵測到的 C 旗標 (CFlags) ---")
@@ -66,7 +61,8 @@ cpygfx_core_module = Extension(
         'src/event.c',
         'src/input.c',
         'src/text.c',
-        'src/image.c'  # <-- 新增
+        'src/image.c',
+        'src/time.c' 
     ],
     
     # 更新編譯旗標
@@ -79,7 +75,7 @@ cpygfx_core_module = Extension(
 # --- 主要的 setup() 函式 ---
 setup(
     name='cpygfx',
-    version='0.1.0',
+    version='0.2.0', # 更新版本號
     description='A mini C-based graphics library for Python (similar to pygame)',
     author='Ray Huang', 
     packages=find_packages(),

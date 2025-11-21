@@ -1,5 +1,4 @@
 # 檔案名稱: CPyGfx/cpygfx/core.py
-# (已升級支援 image 模組)
 import ctypes
 import os
 import sys
@@ -64,22 +63,24 @@ _lib.draw_text.restype = None
 _lib.text_quit.argtypes = []
 _lib.text_quit.restype = None
 
-# --- (新增) Image ---
+# Image
 _lib.image_init.argtypes = []
 _lib.image_init.restype = ctypes.c_int
 _lib.load_image.argtypes = [ctypes.c_char_p]
-_lib.load_image.restype = ctypes.c_void_p  # <-- 回傳指標
-_lib.draw_image.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_int] # <-- 接收指標
+_lib.load_image.restype = ctypes.c_void_p
+_lib.draw_image.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_int]
 _lib.draw_image.restype = None
-_lib.free_image.argtypes = [ctypes.c_void_p] # <-- 接收指標
+_lib.free_image.argtypes = [ctypes.c_void_p]
 _lib.free_image.restype = None
 _lib.image_quit.argtypes = []
 _lib.image_quit.restype = None
-# --------------------
 
-# --- 3. 將 C 函式包裝成 Python 函式 ---
+_lib.get_ticks.argtypes = []
+_lib.get_ticks.restype = ctypes.c_uint32
+_lib.delay.argtypes = [ctypes.c_uint32]
+_lib.delay.restype = None
 
-# (init_window, poll_event, clear, draw_..., get_mouse_... 保持不變)
+
 def init_window(w: int, h: int) -> bool:
     if _lib.init_window(w, h) != 0: return False
     return True
@@ -106,7 +107,6 @@ def draw_rect_filled(x: int, y: int, w: int, h: int, r: int, g: int, b: int):
 def get_mouse_clicked() -> bool:
     return _lib.get_mouse_clicked() == 1
 
-# (text_init, load_font, draw_text, text_quit 保持不變)
 def text_init() -> bool:
     if _lib.text_init() != 0: return False
     return True
@@ -118,20 +118,13 @@ def draw_text(text: str, x: int, y: int, r: int, g: int, b: int):
 def text_quit():
     _lib.text_quit()
 
-# --- (新增) Image 函式 ---
 def image_init() -> bool:
-    """初始化圖片引擎。必須在 init_window 之後呼叫。"""
     if _lib.image_init() != 0:
         print("CPyGfx 核心：IMG 圖片引擎初始化失敗。")
         return False
     return True
 
 def load_image(image_path: str) -> ctypes.c_void_p:
-    """
-    載入圖片檔案。
-    回傳一個指向紋理的指標 (ctypes.c_void_p)。
-    如果失敗，回傳 None。
-    """
     c_path = _to_c_string(image_path)
     ptr = _lib.load_image(c_path)
     if ptr is None:
@@ -139,18 +132,22 @@ def load_image(image_path: str) -> ctypes.c_void_p:
     return ptr
 
 def draw_image(texture_ptr: ctypes.c_void_p, x: int, y: int):
-    """在 (x, y) 處繪製圖片 (紋理指標)。"""
     if texture_ptr:
         _lib.draw_image(texture_ptr, x, y)
     else:
         print("CPyGfx 錯誤：試圖繪製一個 None 圖片指標。")
 
 def free_image(texture_ptr: ctypes.c_void_p):
-    """釋放圖片 (紋理指標) 的記憶體。"""
     if texture_ptr:
         _lib.free_image(texture_ptr)
 
 def image_quit():
-    """關閉圖片引擎。"""
     _lib.image_quit()
-# -------------------------
+
+def get_ticks() -> int:
+    """取得自初始化以來的毫秒數 (用於動畫計時)"""
+    return _lib.get_ticks()
+
+def delay(ms: int):
+    """暫停指定毫秒數 (用於鎖定 FPS)"""
+    _lib.delay(ms)

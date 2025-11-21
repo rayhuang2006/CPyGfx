@@ -21,7 +21,9 @@ from .core import (
     load_image,
     draw_image,
     free_image,
-    image_quit
+    image_quit,
+    get_ticks,
+    delay
 )
 
 __all__ = [
@@ -45,5 +47,7 @@ __all__ = [
     "load_image",
     "draw_image",
     "free_image",
-    "image_quit"
+    "image_quit",
+    "get_ticks",
+    "delay"
 ]

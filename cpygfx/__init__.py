@@ -1,5 +1,3 @@
-# 檔案名稱: CPyGfx/cpygfx/__init__.py
-
 from .core import (
     init_window,
     poll_event,

@@ -1,4 +1,3 @@
-// 檔案名稱: CPyGfx/src/text.h
 #ifndef CPYGFX_TEXT_H
 #define CPYGFX_TEXT_H
 
@@ -30,4 +29,4 @@ void draw_text(const char* text, int x, int y, int r, int g, int b);
  */
 void text_quit();
 
-#endif // CPYGFX_TEXT_H
+#endif

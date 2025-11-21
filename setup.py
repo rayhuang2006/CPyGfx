@@ -65,14 +65,11 @@ cpygfx_core_module = Extension(
         'src/geometry.c'
     ],
     
-    # 更新編譯旗標
     extra_compile_args=all_cflags,
     
-    # 更新連結旗標
     extra_link_args=all_libs
 )
 
-# --- 主要的 setup() 函式 ---
 setup(
     name='cpygfx',
     version='0.2.0',

@@ -1,7 +1,7 @@
 #ifndef CPYGFX_INPUT_H
 #define CPYGFX_INPUT_H
 
-#include <SDL.h> // 需要 SDL_Event 的定義
+#include <SDL.h>
 
 /**
  * @brief (內部) 由 event 模組呼叫，用來更新滑鼠狀態

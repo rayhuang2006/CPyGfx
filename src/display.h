@@ -1,8 +1,7 @@
-// 檔案名稱: src/display.h
 #ifndef CPYGFX_DISPLAY_H
 #define CPYGFX_DISPLAY_H
 
-#include <SDL.h> // 需要 SDL_Renderer 的定義
+#include <SDL.h> 
 
 /**
  * @brief 初始化視窗和渲染器
@@ -26,4 +25,4 @@ void update();
  */
 SDL_Renderer* get_renderer();
 
-#endif // CPYGFX_DISPLAY_H
+#endif

@@ -1,4 +1,3 @@
-// 檔案名稱: CPyGfx/src/draw.h
 #ifndef CPYGFX_DRAW_H
 #define CPYGFX_DRAW_H
 
@@ -27,4 +26,4 @@ void draw_rect(int x, int y, int w, int h, int r, int g, int b);
  */
 void draw_rect_filled(int x, int y, int w, int h, int r, int g, int b);
 
-#endif // CPYGFX_DRAW_H
+#endif

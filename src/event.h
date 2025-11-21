@@ -1,4 +1,3 @@
-// 檔案名稱: src/event.h
 #ifndef CPYGFX_EVENT_H
 #define CPYGFX_EVENT_H
 
@@ -8,4 +7,4 @@
  */
 int poll_event();
 
-#endif // CPYGFX_EVENT_H
+#endif

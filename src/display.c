@@ -1,8 +1,6 @@
-// 檔案名稱: src/display.c
 #include "display.h"
 #include <stdio.h>
 
-// 全域視窗和渲染器「實例」在這裡定義
 static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 
@@ -13,7 +11,7 @@ int init_window(int w, int h) {
     }
 
     window = SDL_CreateWindow(
-        "CPyGfx (Modular)", // <-- 改個標題
+        "CPyGfx (Modular)", 
         SDL_WINDOWPOS_CENTERED, 
         SDL_WINDOWPOS_CENTERED, 
         w, h, 

@@ -1,8 +1,7 @@
-// 檔案名稱: CPyGfx/src/image.h
 #ifndef CPYGFX_IMAGE_H
 #define CPYGFX_IMAGE_H
 
-#include <SDL.h> // for SDL_Texture
+#include <SDL.h>
 
 /**
  * @brief 初始化 IMG 引擎 (PNG, JPG)
@@ -36,4 +35,4 @@ void free_image(void* texture_ptr);
  */
 void image_quit();
 
-#endif // CPYGFX_IMAGE_H
+#endif

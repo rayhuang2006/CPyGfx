@@ -1,4 +1,3 @@
-# 檔案名稱: CPyGfx/cpygfx/core.py
 import ctypes
 import os
 import sys
@@ -17,13 +16,11 @@ except OSError as e:
     print(f"載入 C 函式庫失敗: {e}")
     raise
 
-# 輔助函式：Python str -> C bytes
 def _to_c_string(py_str):
     if py_str is None:
         return None
     return py_str.encode(sys.getdefaultencoding())
 
-# --- 2. 定義 C 函式原型 (Prototypes) ---
 
 # Display / Event / Input
 _lib.init_window.argtypes = [ctypes.c_int, ctypes.c_int]
@@ -87,6 +84,10 @@ _lib.check_collision.argtypes = [
     ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int
 ]
 _lib.check_collision.restype = ctypes.c_int
+
+#Keyboard
+_lib.is_key_down.argtypes = [ctypes.c_int]
+_lib.is_key_down.restype = ctypes.c_int
 
 
 def init_window(w: int, h: int) -> bool:
@@ -153,16 +154,13 @@ def image_quit():
     _lib.image_quit()
 
 def get_ticks() -> int:
-    """取得自初始化以來的毫秒數 (用於動畫計時)"""
     return _lib.get_ticks()
 
 def delay(ms: int):
-    """暫停指定毫秒數 (用於鎖定 FPS)"""
     _lib.delay(ms)
 
 def check_collision(x1: int, y1: int, w1: int, h1: int, x2: int, y2: int, w2: int, h2: int) -> bool:
-    """
-    檢查兩個矩形 (x, y, w, h) 是否重疊。
-    使用 C 語言核心進行運算。
-    """
     return _lib.check_collision(x1, y1, w1, h1, x2, y2, w2, h2) == 1
+
+def is_key_down(key_code: int) -> bool:
+    return _lib.is_key_down(key_code) == 1

@@ -1,4 +1,3 @@
-// 檔案名稱: CPyGfx/src/input.h
 #ifndef CPYGFX_INPUT_H
 #define CPYGFX_INPUT_H
 
@@ -30,4 +29,11 @@ int get_mouse_y();
  */
 int get_mouse_clicked();
 
-#endif // CPYGFX_INPUT_H
+/**
+ * @brief 檢查指定的鍵盤按鍵是否被按下
+ * @param scancode SDL_Scancode 整數代碼
+ * @return 1 (按下), 0 (未按下)
+ */
+int is_key_down(int scancode);
+
+#endif

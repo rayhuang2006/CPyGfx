@@ -24,7 +24,8 @@ from .core import (
     image_quit,
     get_ticks,
     delay,
-    check_collision
+    check_collision,
+    is_key_down
 )
 
 __all__ = [
@@ -51,5 +52,19 @@ __all__ = [
     "image_quit",
     "get_ticks",
     "delay",
-    "check_collision"
+    "check_collision",
+    "is_key_down",
+
+    # 一些比較常見的按鍵，先列出來比較方便
+    "KEY_W",
+    "KEY_A",
+    "KEY_S",
+    "KEY_D", 
+    "KEY_UP",
+    "KEY_DOWN",
+    "KEY_LEFT",
+    "KEY_RIGHT",
+    "KEY_SPACE",
+    "KEY_ESCAPE",
+    "KEY_ENTER"
 ]

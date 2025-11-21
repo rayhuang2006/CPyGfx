@@ -50,7 +50,6 @@ print(" ".join(all_libs))
 print("-------------------------------")
 
 
-# --- 定義 C Extension 模組 ---
 cpygfx_core_module = Extension(
     name='cpygfx._cpygfx_core', 
     
@@ -62,7 +61,8 @@ cpygfx_core_module = Extension(
         'src/input.c',
         'src/text.c',
         'src/image.c',
-        'src/time.c' 
+        'src/time.c',
+        'src/geometry.c'
     ],
     
     # 更新編譯旗標
@@ -75,7 +75,7 @@ cpygfx_core_module = Extension(
 # --- 主要的 setup() 函式 ---
 setup(
     name='cpygfx',
-    version='0.2.0', # 更新版本號
+    version='0.2.0',
     description='A mini C-based graphics library for Python (similar to pygame)',
     author='Ray Huang', 
     packages=find_packages(),

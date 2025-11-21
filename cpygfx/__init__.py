@@ -23,7 +23,8 @@ from .core import (
     free_image,
     image_quit,
     get_ticks,
-    delay
+    delay,
+    check_collision
 )
 
 __all__ = [
@@ -49,5 +50,6 @@ __all__ = [
     "free_image",
     "image_quit",
     "get_ticks",
-    "delay"
+    "delay",
+    "check_collision"
 ]

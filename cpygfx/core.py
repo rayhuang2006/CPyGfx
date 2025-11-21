@@ -75,10 +75,18 @@ _lib.free_image.restype = None
 _lib.image_quit.argtypes = []
 _lib.image_quit.restype = None
 
+# Time
 _lib.get_ticks.argtypes = []
 _lib.get_ticks.restype = ctypes.c_uint32
 _lib.delay.argtypes = [ctypes.c_uint32]
 _lib.delay.restype = None
+
+#Geometry
+_lib.check_collision.argtypes = [
+    ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,
+    ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int
+]
+_lib.check_collision.restype = ctypes.c_int
 
 
 def init_window(w: int, h: int) -> bool:
@@ -151,3 +159,10 @@ def get_ticks() -> int:
 def delay(ms: int):
     """暫停指定毫秒數 (用於鎖定 FPS)"""
     _lib.delay(ms)
+
+def check_collision(x1: int, y1: int, w1: int, h1: int, x2: int, y2: int, w2: int, h2: int) -> bool:
+    """
+    檢查兩個矩形 (x, y, w, h) 是否重疊。
+    使用 C 語言核心進行運算。
+    """
+    return _lib.check_collision(x1, y1, w1, h1, x2, y2, w2, h2) == 1

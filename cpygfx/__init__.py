@@ -23,7 +23,10 @@ from .core import (
     get_ticks,
     delay,
     check_collision,
-    is_key_down
+    is_key_down,
+    draw_image_rect,
+    get_text_width,
+    get_text_height
 )
 
 __all__ = [
@@ -52,6 +55,9 @@ __all__ = [
     "delay",
     "check_collision",
     "is_key_down",
+    "draw_image_rect",
+    "get_text_width",
+    "get_text_height"
 
     # 一些比較常見的按鍵，先列出來比較方便
     "KEY_W",

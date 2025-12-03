@@ -64,3 +64,13 @@ void free_image(void* texture_ptr) {
 void image_quit() {
     IMG_Quit();
 }
+
+void draw_image_rect(void* texture_ptr, int x, int y, int w, int h) {
+    if (texture_ptr == NULL) return;
+
+    SDL_Texture* texture = (SDL_Texture*)texture_ptr;
+    
+    SDL_Rect dst_rect = { x, y, w, h };
+
+    SDL_RenderCopy(renderer, texture, NULL, &dst_rect);
+}

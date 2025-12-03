@@ -72,7 +72,7 @@ cpygfx_core_module = Extension(
 
 setup(
     name='cpygfx',
-    version='0.2.0',
+    version='0.2.1',
     description='A mini C-based graphics library for Python (similar to pygame)',
     author='Ray Huang', 
     packages=find_packages(),

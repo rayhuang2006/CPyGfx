@@ -25,6 +25,14 @@ int load_font(const char* font_path, int size);
 void draw_text(const char* text, int x, int y, int r, int g, int b);
 
 /**
+ * @brief [新增] 測量文字的寬度與高度
+ * @param text 要測量的字串
+ * @param w 輸出寬度指標
+ * @param h 輸出高度指標
+ */
+void get_text_size(const char* text, int* w, int* h);
+
+/**
  * @brief 關閉 TTF 引擎並釋放資源
  */
 void text_quit();

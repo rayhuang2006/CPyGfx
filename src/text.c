@@ -61,6 +61,15 @@ void draw_text(const char* text, int x, int y, int r, int g, int b) {
     SDL_FreeSurface(surface);
 }
 
+void get_text_size(const char* text, int* w, int* h) {
+    if (font == NULL || text == NULL) {
+        if (w) *w = 0;
+        if (h) *h = 0;
+        return;
+    }
+    TTF_SizeText(font, text, w, h);
+}
+
 void text_quit() {
     if (font != NULL) {
         TTF_CloseFont(font);

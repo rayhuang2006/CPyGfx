@@ -71,6 +71,8 @@ _lib.free_image.argtypes = [ctypes.c_void_p]
 _lib.free_image.restype = None
 _lib.image_quit.argtypes = []
 _lib.image_quit.restype = None
+_lib.draw_image_rect.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int]
+_lib.draw_image_rect.restype = None
 
 # Time
 _lib.get_ticks.argtypes = []
@@ -146,6 +148,13 @@ def draw_image(texture_ptr: ctypes.c_void_p, x: int, y: int):
     else:
         print("CPyGfx 錯誤：試圖繪製一個 None 圖片指標。")
 
+def draw_image_rect(texture_ptr: ctypes.c_void_p, x: int, y: int, w: int, h: int):
+    """在 (x, y) 繪製圖片並縮放到 (w, h) 大小"""
+    if texture_ptr:
+        _lib.draw_image_rect(texture_ptr, x, y, w, h)
+    else:
+        pass
+
 def free_image(texture_ptr: ctypes.c_void_p):
     if texture_ptr:
         _lib.free_image(texture_ptr)
@@ -164,3 +173,17 @@ def check_collision(x1: int, y1: int, w1: int, h1: int, x2: int, y2: int, w2: in
 
 def is_key_down(key_code: int) -> bool:
     return _lib.is_key_down(key_code) == 1
+
+def get_text_width(text: str) -> int:
+    """取得字串寬度 (px)"""
+    w = ctypes.c_int(0)
+    h = ctypes.c_int(0)
+    _lib.get_text_size(_to_c_string(text), ctypes.byref(w), ctypes.byref(h))
+    return w.value
+
+def get_text_height(text: str) -> int:
+    """取得字串高度 (px)"""
+    w = ctypes.c_int(0)
+    h = ctypes.c_int(0)
+    _lib.get_text_size(_to_c_string(text), ctypes.byref(w), ctypes.byref(h))
+    return h.value

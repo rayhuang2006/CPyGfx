@@ -25,6 +25,13 @@ void* load_image(const char* image_path);
 void draw_image(void* texture_ptr, int x, int y);
 
 /**
+ * @brief (新增) 繪製圖片並縮放到指定大小
+ * @param w 目標寬度
+ * @param h 目標高度
+ */
+void draw_image_rect(void* texture_ptr, int x, int y, int w, int h);
+
+/**
  * @brief 釋放一個紋理的記憶體
  * @param texture_ptr (void*) 之前由 load_image() 回傳的指標
  */

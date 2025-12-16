@@ -40,7 +40,7 @@ void draw_text(const char* text, int x, int y, int r, int g, int b) {
 
     SDL_Color color = { (Uint8)r, (Uint8)g, (Uint8)b, 255 };
     
-    SDL_Surface* surface = TTF_RenderText_Blended(font, text, color);
+    SDL_Surface* surface = TTF_RenderUTF8_Blended(font, text, color);
     if (surface == NULL) {
         fprintf(stderr, "無法渲染文字: %s\n", TTF_GetError());
         return;
@@ -67,7 +67,7 @@ void get_text_size(const char* text, int* w, int* h) {
         if (h) *h = 0;
         return;
     }
-    TTF_SizeText(font, text, w, h);
+    TTF_SizeUTF8(font, text, w, h);
 }
 
 void text_quit() {

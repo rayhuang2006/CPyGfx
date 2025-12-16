@@ -35,12 +35,14 @@ def get_c_libs(pkg_name):
 all_cflags = list(set(
     get_c_flags("SDL2") + 
     get_c_flags("SDL2_ttf") +
-    get_c_flags("SDL2_image")
+    get_c_flags("SDL2_image") +
+    get_c_flags("SDL2_mixer") 
 ))
 all_libs = list(set(
     get_c_libs("SDL2") + 
     get_c_libs("SDL2_ttf") +
-    get_c_libs("SDL2_image")
+    get_c_libs("SDL2_image") +
+    get_c_libs("SDL2_mixer") 
 ))
 
 print(f"--- 偵測到的 C 旗標 (CFlags) ---")
@@ -62,7 +64,8 @@ cpygfx_core_module = Extension(
         'src/text.c',
         'src/image.c',
         'src/time.c',
-        'src/geometry.c'
+        'src/geometry.c',
+        'src/sound.c',
     ],
     
     extra_compile_args=all_cflags,

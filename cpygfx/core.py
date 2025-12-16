@@ -80,6 +80,29 @@ _lib.get_ticks.restype = ctypes.c_uint32
 _lib.delay.argtypes = [ctypes.c_uint32]
 _lib.delay.restype = None
 
+# Sound (SDL2_mixer)
+_lib.sound_init.argtypes = []
+_lib.sound_init.restype = ctypes.c_int
+
+_lib.sound_quit.argtypes = []
+_lib.sound_quit.restype = None
+
+_lib.play_sound.argtypes = [ctypes.c_char_p, ctypes.c_int]
+_lib.play_sound.restype = ctypes.c_int
+
+def sound_init() -> bool:
+    return _lib.sound_init() == 0
+
+def sound_quit():
+    _lib.sound_quit()
+
+def play_sound(wav_path: str, loops: int = 0) -> bool:
+    """
+    wav_path: WAV 檔路徑
+    loops: 0=播一次, 1=再播一次(共2次), -1=無限循環
+    """
+    return _lib.play_sound(_to_c_string(wav_path), loops) == 0
+
 #Geometry
 _lib.check_collision.argtypes = [
     ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,

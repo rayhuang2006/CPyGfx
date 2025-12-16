@@ -26,7 +26,10 @@ from .core import (
     is_key_down,
     draw_image_rect,
     get_text_width,
-    get_text_height
+    get_text_height,
+    sound_init,
+    sound_quit,
+    play_sound
 )
 
 __all__ = [
@@ -57,7 +60,10 @@ __all__ = [
     "is_key_down",
     "draw_image_rect",
     "get_text_width",
-    "get_text_height"
+    "get_text_height",
+    "sound_init",
+    "sound_quit",
+    "play_sound",
 
     # 一些比較常見的按鍵，先列出來比較方便
     "KEY_W",
